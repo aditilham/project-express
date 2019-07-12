@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const port = 3000;
+const port = 4000;
 
 const todoList = require("./todoData");
 
@@ -9,8 +9,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => res.send(todoList));
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 app.post("/", (req, res) => {
   try {
@@ -50,3 +48,5 @@ app.put("/:id", (req, res) => {
     res.send(error);
   }
 });
+
+app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`));
