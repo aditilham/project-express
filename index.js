@@ -8,9 +8,9 @@ const todoList = require("./todoData");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => res.send('This is API DEMO'))
+app.get("/", (req, res) => res.send("This is API DEMO"))
 app.post("/", (req, res) => {
-  res.send('This is API DEMO')
+  res.send("This is API DEMO, please add /todos in url path")
 })
 
 app.get("/todos", (req, res) => res.send(todoList));
@@ -35,19 +35,19 @@ app.post("/todos", (req, res) => {
   }
 });
 
-app.delete("/:index", (req, res) => {
+app.delete("/:todos", (req, res) => {
   try {
-    let index = req.params.index;
-    todoList.splice(index, 1);
+    let todos = req.params.todos;
+    todoList.splice(todos, 1);
     res.status(200).send(todoList);
   } catch (error) {
     res.send(error);
   }
 });
 
-app.put("/:id", (req, res) => {
+app.put("/:todos", (req, res) => {
   try {
-    todoList[req.params.id] = req.body;
+    todoList[req.params.todos] = req.body;
     res.send("update data sucessfuly");
   } catch (error) {
     res.send(error);
