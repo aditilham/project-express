@@ -8,9 +8,14 @@ const todoList = require("./todoData");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => res.send(todoList));
-
+app.get("/", (req, res) => res.send('This is API DEMO'))
 app.post("/", (req, res) => {
+  res.send('This is API DEMO')
+})
+
+app.get("/todos", (req, res) => res.send(todoList));
+
+app.post("/todos", (req, res) => {
   try {
     let newId = todoList.length + 1;
     let newTodo = {
